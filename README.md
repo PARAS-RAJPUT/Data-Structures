@@ -1,1 +1,1 @@
-# Leetcode_DSA
+# Data Structures
