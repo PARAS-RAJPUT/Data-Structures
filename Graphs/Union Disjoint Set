@@ -1,4 +1,4 @@
-ector<int> parent, rank;
+vector<int> parent, rank;
 
     // Constructor to initialize DSU
     Solution(int n = 0) {
