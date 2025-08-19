@@ -1,1 +1,11 @@
+//------- Representation of Graph(Adjancency matrix)-----------
+
+
+unordered_map<int, vector<int>> adj;
+for(vector<int>& vec: /*prequisites*/) {
+  int v=vec[1];
+  int u=vec[0];
+  adj[u].push_back(v);
+}
+return solve(/*ac to question*/);
 
