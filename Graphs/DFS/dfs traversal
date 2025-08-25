@@ -1,0 +1,20 @@
+//----------------DFS-------------------
+//dfs: --> --> --> --> -->
+
+
+void DFS(vector<vector<int>>& adj, vector<bool>& visited, int node, vector<int>& res) {
+        visited[node] = true;
+        res.push_back(node);
+    
+        for (int neighbor : adj[node]) {
+            if (!visited[neighbor]) {
+                DFS(adj, visited, neighbor, res);
+            }
+        }
+}
+    vector<int> dfs(vector<vector<int>>& adj) {
+        vector<bool> visited(adj.size(), false);
+        vector<int> res;
+        DFS(adj, visited, 0, res);
+        return res;
+    }

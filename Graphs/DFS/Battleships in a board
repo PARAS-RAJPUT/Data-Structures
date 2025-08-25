@@ -1,0 +1,29 @@
+//---------------------DFS----------------------------
+
+//--------reference taken from leetcode 200-----------
+
+//------LeetCode 419. Battleships in a Board----------
+
+
+class Solution {
+public:
+     int countBattleships(vector<vector<char>>& grid) {
+        int islands=0;
+        int m=grid.size() , n=grid[0].size();
+        for(int i=0;i<m;i++) {
+            for(int j=0;j<n;j++) {
+                if(grid[i][j]=='X') {
+                    if(i>0 && grid[i-1][j]=='X'){
+                        continue;
+                    }
+                    if(j>0 && grid[i][j-1]=='X') {
+                        continue;
+                    }
+                    islands++;
+                }
+            }
+            
+        }
+        return islands;
+    }
+};
