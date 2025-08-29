@@ -23,7 +23,15 @@
 ![kermit-kermit-the-frog 1](https://github.com/user-attachments/assets/d37fc438-8631-4959-b9a0-bcf06c9af0de)
 
 5. Tree
+
+
+![typing-kermit](https://github.com/user-attachments/assets/bcaf1492-e7ab-4078-96c1-458531f7a810)
+
 6. Trie
+
+
+![zz](https://github.com/user-attachments/assets/5911c4c4-1c69-4456-ad97-d163c1fdadff)
+
 7. Recursion
 
 
