@@ -9,7 +9,8 @@
 2. DP
 
    
-![z](https://github.com/user-attachments/assets/f5a876e1-5b6a-4b5a-a9ac-0e6170420436)
+![aaaa](https://github.com/user-attachments/assets/c8e045da-ab4f-4ea8-adf0-f79dbad27e63)
+
 
 3. Greedy
 
@@ -20,5 +21,8 @@
 5. Tree
 6. Trie
 7. Recursion
+
+
+![z](https://github.com/user-attachments/assets/77992db8-c92f-46bc-87da-c99a661c463c)
 
 
