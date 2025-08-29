@@ -2,6 +2,8 @@
 
 
 1. Graph's Concepts
+![Uploading kermit-kermit-the-frog.gif…]()
+
 2. DP
 3. Greedy
 4. Array
