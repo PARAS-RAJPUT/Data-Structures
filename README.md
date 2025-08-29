@@ -18,6 +18,10 @@
 ![bedtime-kermit-the-frog](https://github.com/user-attachments/assets/7d76ba10-a658-46ea-9bfb-26f133dc008d)
 
 4. Array
+
+
+![kermit-kermit-the-frog 1](https://github.com/user-attachments/assets/d37fc438-8631-4959-b9a0-bcf06c9af0de)
+
 5. Tree
 6. Trie
 7. Recursion
