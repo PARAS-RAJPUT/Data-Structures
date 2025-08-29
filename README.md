@@ -2,10 +2,13 @@
 
 
 1. Graph's Concepts
-![Uploading kermit-kermit-the-frog.gif…]()
+![kermit-the-frog-bleach](https://github.com/user-attachments/assets/4138eb3a-5abd-4491-a209-f0fbdd90a310)
 
 2. DP
+![z](https://github.com/user-attachments/assets/f5a876e1-5b6a-4b5a-a9ac-0e6170420436)
+
 3. Greedy
+
 4. Array
 5. Tree
 6. Trie
