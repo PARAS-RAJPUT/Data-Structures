@@ -13,6 +13,9 @@
 
 3. Greedy
 
+
+![bedtime-kermit-the-frog](https://github.com/user-attachments/assets/7d76ba10-a658-46ea-9bfb-26f133dc008d)
+
 4. Array
 5. Tree
 6. Trie
