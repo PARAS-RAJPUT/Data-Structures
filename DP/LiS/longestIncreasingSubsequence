@@ -1,1 +1,22 @@
+//O(n log n)
+
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int longestIncreasingSubsequence(int arr[], int n)
+{
+    vector<int> t(n, 1); // initialize LIS values with 1
+    int max1 = 1;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+            if (arr[i] > arr[j]) {
+                t[i] = max(t[i], t[j] + 1);
+                max1 = max(max1, t[i]);
+            }
+        }
+    }
+    return max1;
+}
 
