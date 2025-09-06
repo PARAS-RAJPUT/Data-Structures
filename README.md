@@ -1,7 +1,7 @@
 # Data Structures
 
 
-1. Graph's Concepts
+1. Graph Concepts
 
    
 ![kermit-the-frog-bleach](https://github.com/user-attachments/assets/4138eb3a-5abd-4491-a209-f0fbdd90a310)
