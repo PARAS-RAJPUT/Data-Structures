@@ -1,1 +1,54 @@
 
+//--------------------------------------------FIRST APPROACH------------------------------------------
+//-----------------------------------Time Complexity: O(n^2 log(n))--------------------------------
+
+class Solution {
+public:
+    bool hasZero(int x) { // O(log n)
+        while(x > 0) {
+            if(x % 10 == 0) return true;
+            x /= 10;
+        }
+        return false;
+}
+    vector<int> getNoZeroIntegers(int n) {
+        vector<int> r;
+        for(int i = 1; i < n; i++) {
+        r.push_back(i); // O(n)
+    }
+        for(int i = 0; i<r.size(); i++) {
+            for(int j=i; j<r.size(); j++) {
+                if(r[i]+r[j] == n && !hasZero(r[i]) && !hasZero(r[j])) { //O(log n * n^2)
+                    
+                    return {r[i], r[j]};
+                   
+                }
+            }
+        }
+        return {};
+    }
+};
+
+
+
+
+//-----------------------------BEST APPROACH---------------------------------
+//---------------------------T.C = O(log n)----------------------------------
+
+bool hasZero(int x) {
+    while(x > 0) {
+        if(x % 10 == 0) return true;
+        x /= 10;
+    }
+    return false;
+}
+
+vector<int> getNoZeroIntegers(int n) {
+    for(int a = 1; a < n; a++) {
+        int b = n - a;
+        if(!hasZero(a) && !hasZero(b)) {
+            return {a, b};
+        }
+    }
+    return {}; // should never happen
+}
