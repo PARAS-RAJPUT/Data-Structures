@@ -9,7 +9,8 @@
 2. DP
 
    
-![aaaa](https://github.com/user-attachments/assets/c8e045da-ab4f-4ea8-adf0-f79dbad27e63)
+![kermit-falling](https://github.com/user-attachments/assets/524ebce4-b1f3-49be-9238-5d590988cf61)
+
 
 
 3. Greedy
