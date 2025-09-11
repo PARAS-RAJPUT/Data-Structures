@@ -1,1 +1,27 @@
 
+//------------------------------------T.C = O(N logN)-------------------------------------
+//---------NOT A OPTIMAL APPROACH, USE UNORDERED MAP FOR LINEAR TIME COMPLEXITY------------
+
+class Solution {
+public:
+    bool isVowel(char ch) {
+        ch = tolower(ch); 
+        return (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u');
+}
+    string sortVowels(string s) {
+         vector<char> vowels;
+         for(char c : s) {
+            if(isVowel(c)) vowels.push_back(c);
+    }
+    sort(vowels.begin(), vowels.end());
+
+    int idx = 0;
+    for(char &c : s) {
+        if(isVowel(c)) {
+            c = vowels[idx++];
+        }
+    }
+    
+    return s;
+    }
+};
