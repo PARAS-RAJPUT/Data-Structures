@@ -1,1 +1,36 @@
+class Solution {
+public:
+    int minimumTeachings(int n, vector<vector<int>>& languages, vector<vector<int>>& friendships) {
+        unordered_set<int> sad;
 
+        for(auto &friends : friendships) {
+            int u = friends[0] - 1;
+            int v = friends[1] - 1;
+
+            unordered_set<int>langk(begin(languages[u]), end(languages[u]));
+            bool talk = false;
+            for(int lang : languages[v]) {
+                if(langk.count(lang)) {
+                    talk = true;
+                    break;
+                }
+            }
+
+            if(!talk) {
+                sad.insert(u);
+                sad.insert(v);
+            }
+        }
+
+        vector<int> language(n+1, 0);
+        int most = 0;
+
+        for(int user : sad) {
+            for(int lang : languages[user]) {
+                language[lang]++;
+                most = max(most, language[lang]);
+            }
+        }
+        return sad.size() - most;
+    }
+};
