@@ -9,7 +9,8 @@
 2. DP
 
    
-![kermit-falling](https://github.com/user-attachments/assets/524ebce4-b1f3-49be-9238-5d590988cf61)
+![muppetwiki-muppet-wiki](https://github.com/user-attachments/assets/5c250ce8-727d-41cc-b3ed-5c49d24debc2)
+
 
 
 
