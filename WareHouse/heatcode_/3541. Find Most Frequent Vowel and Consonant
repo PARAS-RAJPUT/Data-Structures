@@ -1,0 +1,41 @@
+
+//----------------------------------MY APPROACH FOR THE QUESTION ------------------------------
+
+class Solution {
+public:
+    int maxFreqSum(string s) {
+        int maxVowel = 0;
+        int maxCons = 0;
+
+        int arr[26] = {0};
+
+        for(char &c : s) {
+            arr[c - 'a']++;
+
+            if(string("aeiou").find(c) != string :: npos) {
+                maxVowel = max(maxVowel, arr[c - 'a']);
+            }else{
+                maxCons = max(maxCons, arr[c - 'a']);
+            }
+        }
+        return maxCons + maxVowel;
+    }
+};
+
+//---------------------------------OPTIMIZED SOLUTION(USING HASHMAP SET) ON LEETCODE---------------------------
+
+
+int count_v=0;
+        int count_c=0;
+        unordered_map<char,int>mp;
+         for(int i=0;i<s.size();i++){
+            if(s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u'){
+                mp[s[i]]++;
+                count_v=max(count_v,mp[s[i]]);
+            }
+            else{
+            mp[s[i]]++;
+                count_c=max(count_c,mp[s[i]]);
+            }
+        }
+        return count_v+count_c;
