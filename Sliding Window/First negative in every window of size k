@@ -1,0 +1,52 @@
+
+//
+
+class Solution {
+  public:
+  
+    typedef long long ll;
+    
+    vector<int> firstNegInt(vector<int>& a, int k) {
+        // write code here
+        int n = a.size();
+        
+        int i = 0, j = 0;
+        
+        vector<int> result;
+        
+        deque<ll> dq;
+        
+        while(j < n) {
+            
+            if(a[j] < 0) {
+                
+                dq.push_back(a[j]);
+                
+            }
+            if(j - i + 1 == k) {
+                
+                if(!dq.empty()) {
+                    
+                    result.push_back(dq.front());
+                }
+                
+                else{
+                    
+                    result.push_back(0);
+                }
+                
+                if(a[i] < 0 && !dq.empty()) {
+                    
+                    dq.pop_front();
+                }
+                
+                i++;
+            }
+            
+            j++;
+        }
+        
+        return result;
+        
+    }
+};
