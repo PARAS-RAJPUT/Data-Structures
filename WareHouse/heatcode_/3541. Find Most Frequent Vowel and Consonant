@@ -1,7 +1,7 @@
 
 //----------------------------------MY APPROACH FOR THE QUESTION ------------------------------
 
-class Solution {
+class Solution { 
 public:
     int maxFreqSum(string s) {
         int maxVowel = 0;
