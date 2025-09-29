@@ -1,9 +1,19 @@
 # Graph – Data Structure 📊
+
+
+
 📌 Introduction
+
+
 
 A Graph is a non-linear data structure consisting of a finite set of vertices (nodes) and edges (connections). Graphs are widely used to model real-world problems like social networks, maps, networks, dependency resolution, etc.
 
+
+
 1. Basics of Graphs
+
+
+
 
 -> Definition: A set of vertices V and edges E.
 
@@ -25,7 +35,11 @@ A Graph is a non-linear data structure consisting of a finite set of vertices (n
 
 -> Bipartite Graph
 
+
+
 2. Representation of Graphs
+
+
 
 -> Adjacency Matrix
 
@@ -37,7 +51,11 @@ A Graph is a non-linear data structure consisting of a finite set of vertices (n
 
 -> Comparison of representations (space & time trade-offs).
 
+
+
 3. Graph Traversal
+
+
 
 -> Depth First Search (DFS)
 
@@ -45,7 +63,11 @@ A Graph is a non-linear data structure consisting of a finite set of vertices (n
 
 -> Applications of traversal: Connected components, cycle detection, bipartite check.
 
+
+
 4. Shortest Path Algorithms
+
+
 
 -> Dijkstra’s Algorithm (single-source shortest path, non-negative weights)
 
@@ -53,15 +75,22 @@ A Graph is a non-linear data structure consisting of a finite set of vertices (n
 
 -> Floyd-Warshall Algorithm (all-pairs shortest paths)
 
-A* Algorithm (heuristic-based search)
+
+
 
 5. Minimum Spanning Tree (MST)
+
+
 
 -> Kruskal’s Algorithm (Union-Find)
 
 -> Prim’s Algorithm (Greedy with priority queue)
 
+
+
 6. Special Graph Algorithms
+
+
 
 Topological Sorting (DAGs)
 
@@ -73,7 +102,11 @@ Topological Sorting (DAGs)
 
 -> Bridges and Articulation Points (Tarjan’s algorithm)
 
+
+
 7. Eulerian Graphs (Euler’s Theorem) 🌀
+
+
 
 -> Eulerian Path: A path that visits every edge exactly once.
 
@@ -88,9 +121,16 @@ Topological Sorting (DAGs)
 -> Otherwise, no Eulerian Path exists.
 
 
+
+
 ** Algorithm:
 
+
+
 -> Hierholzer’s Algorithm – Efficient method to construct Eulerian Path/Circuit in O(E) time.
+
+
+
 
 
 | Algorithm             | Time Complexity  | Space Complexity |
