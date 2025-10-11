@@ -1,0 +1,25 @@
+class Solution {
+public:
+    long long maximumTotalDamage(vector<int>& power) {
+        unordered_map<int, long long> sum;
+        for (int x : power) sum[x] += x;
+        vector<int> vals;
+        vals.reserve(sum.size());
+        for (auto &p : sum) vals.push_back(p.first);
+        sort(vals.begin(), vals.end());
+
+        int n = vals.size();
+        if (n == 0) return 0;
+        vector<long long> total(n), dp(n);
+        for (int i = 0; i < n; ++i) total[i] = sum[vals[i]];
+        dp[0] = total[0];
+        for (int i = 1; i < n; ++i) {
+            int need = vals[i] - 3;
+            int j = upper_bound(vals.begin(), vals.begin() + i, need) - vals.begin() - 1;
+            long long take = total[i] + (j >= 0 ? dp[j] : 0LL);\
+            dp[i] = max(dp[i - 1], take);
+        }
+        return dp.back();
+
+    }
+};
