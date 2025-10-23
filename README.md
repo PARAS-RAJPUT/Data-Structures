@@ -40,3 +40,7 @@
 ![z](https://github.com/user-attachments/assets/77992db8-c92f-46bc-87da-c99a661c463c)
 
 
+8. Linked List
+
+
+![kermit-dance](https://github.com/user-attachments/assets/f9d51742-5e33-4f6f-bf3b-62f0583445d3)
