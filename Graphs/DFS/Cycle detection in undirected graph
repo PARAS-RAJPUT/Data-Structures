@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+bool isCycleUtil(vector<int> g[], int u, vector<bool>&visited, int parent) {
+    visited[u] = true;
+
+    for(int v : g[u]) {
+        if(v == parent) {
+            continue;
+        }
+        if(visited[v]) {
+            return true;
+        }
+        if(isCycleUtil(g, v, visited, u)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool isCycle(vector<int>g[], int V) {
+    vector<bool> visited(V+1, false);
+    for(int i = 1; i<=V; i++) {
+        if(!visited[i] && isCycleUtil(g, i, visited, -1)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+string cycleDetection (vector<vector<int>>& edges, int n, int m)
+{
+    // Write your code here.
+    vector<int>g[n+1];
+    for(auto edge : edges) {
+        int u = edge[0];
+        int v = edge[1];
+        g[u].push_back(v);
+        g[v].push_back(u);
+    }
+    if(isCycle(g, n)) {
+        return "Yes";
+    }
+    else{
+        return "No";
+    }
+
+}
