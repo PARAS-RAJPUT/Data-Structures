@@ -1,0 +1,40 @@
+
+
+//********************************** TIME COMPLEXITY = O(V+E) ********************************
+
+
+bool isCycledfs(vector<int> adj[], int u, vector<bool>&visited, vector<bool>&inRecursion) {
+
+	visited[u] = true;
+	inRecursion[u] = true;
+	for(int &v : adj[u]) {
+		if(!visited[v] && isCycledfs(adj, v, visited, inRecursion)) {
+			return true;
+		}
+		else if(inRecursion[v]) {
+			return true;
+		}
+	}
+	inRecursion[u] = false;
+	return false;
+
+}
+bool isCyclic(vector<vector<int>>& edges, int v, int e)
+{
+	// Write your code here
+	vector<int> adj[v];
+	for(auto edge : edges) {
+		int u = edge[0];
+		int w = edge[1];
+		adj[u].push_back(w);
+	}
+	vector<bool> visited(v, false);
+	vector<bool> inRecursion(v, false);
+
+	for(int i =0 ; i<v; i++) {
+		if(!visited[i] && isCycledfs(adj, i, visited, inRecursion)) {
+			return true;
+		}
+	}
+	return false;
+}
