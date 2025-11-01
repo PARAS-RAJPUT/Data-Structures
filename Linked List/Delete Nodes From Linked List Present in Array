@@ -1,0 +1,59 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* modifiedList(vector<int>& nums, ListNode* head) {
+        /*int maxVal = -1;
+        for (int num : nums) {
+            maxVal = max(maxVal, num);
+        }
+
+        vector<bool> freq(maxVal + 1, false);
+
+        for (int num : nums) {
+            freq[num] = true;
+        }
+
+        ListNode dummy(0);
+        ListNode* current = &dummy;
+
+        while (head != nullptr) {
+            if (head->val >= freq.size() || freq[head->val] == false) {
+                current->next = head;
+                current = current->next;
+            }
+            head = head->next;
+        }
+
+        current->next = nullptr;
+
+        return dummy.next;
+    } */
+
+    unordered_set<int> s(nums.begin(), nums.end());
+        ListNode* dummy = new ListNode(-1);
+        dummy->next = head;
+
+        ListNode* prev = dummy;
+        ListNode* curr = head;
+
+        while (curr) {
+            if (s.count(curr->val)) {
+                prev->next = curr->next;
+            } else {
+                prev = curr;
+            }
+            curr = curr->next;
+        }
+
+        return dummy->next;
+    }
+};
