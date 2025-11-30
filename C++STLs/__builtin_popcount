@@ -1,0 +1,4 @@
+# __builtin_popcount()
+
+a GCC/Clang built-in function that returns the number of 1-bits (set bits) in an integer.
+It is highly optimized and usually compiles to a single CPU instruction.
