@@ -1,3 +1,6 @@
+
+//********************* T.C = O(NLOGN) ************************
+
 class Solution {
 public:
     int numRescueBoats(vector<int>& people, int limit) {
