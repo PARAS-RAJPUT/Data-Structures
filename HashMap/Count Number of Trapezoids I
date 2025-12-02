@@ -1,0 +1,27 @@
+class Solution {
+public:
+    const int M = 1e9 + 7;
+    int countTrapezoids(vector<vector<int>>& points) {
+        unordered_map<int, int> freq;
+
+        for(auto& p : points) {
+            freq[p[1]]++;
+        }
+
+        vector<long long> Pcount;
+
+        for(auto& [y, count] : freq) {
+            if(count >= 2) {
+                Pcount.push_back(1LL * count * (count - 1) / 2);
+            }
+        }
+
+        long long total = 0, sum = 0;
+
+        for(auto cnt : Pcount) {
+            total = (total + sum * cnt % M) % M;
+            sum = (sum + cnt) % M;
+        }
+        return total;
+    }
+};
