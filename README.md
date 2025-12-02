@@ -44,3 +44,10 @@
 
 
 ![kermit-dance](https://github.com/user-attachments/assets/f9d51742-5e33-4f6f-bf3b-62f0583445d3)
+
+
+9. Bits Manipulation
+
+
+![bat frog](https://github.com/user-attachments/assets/441f53b0-0f99-4b19-8ede-db63b03e649b)
+
