@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int maximumBags(vector<int>& capacity, vector<int>& rocks, int additionalRocks) {
+        int n = capacity.size();
+        int count = 0;
+        vector<int> required(n);
+
+        for(int i = 0; i<n; i++) {
+            required[i] = capacity[i] - rocks[i];
+        }
+
+        sort(begin(required), end(required));
+
+        for(int i = 0; i<n; i++) {
+            if(additionalRocks >= required[i]) {
+                additionalRocks -= required[i];
+                count++;
+            }
+            else{
+                break;
+            }
+        }
+        return count;
+    }
+};
