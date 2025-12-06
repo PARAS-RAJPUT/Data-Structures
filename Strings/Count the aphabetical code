@@ -1,0 +1,11 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long stringValue(string s) {
+    long long result = 0;
+    for (char ch : s) {
+        int val = ch - 'a';   // a=0, b=1, ..., z=25
+        result = result * 26 + val;
+    }
+    return result;
+}
