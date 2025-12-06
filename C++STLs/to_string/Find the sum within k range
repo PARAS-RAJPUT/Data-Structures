@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string checkDays(char n1, char n2, char n3, int k) {
+    int a = n1 - '0';
+    int b = n2 - '0';
+    int c = n3 - '0';
+    
+    int m1 = a - 2;
+    int m2 = b + 2;
+    int m3 = c;
+    
+    int sum = m1+m2+m3;
+
+    if (sum < k) {
+        return "YES " + to_string(sum);
+    }
+    return "NO " + to_string(sum);
+}
+
+int main() {
+    cout << checkDays('3', '4', '2', 10) << endl;
+    cout << checkDays('5', '5', '5', 10) << endl;
+}
