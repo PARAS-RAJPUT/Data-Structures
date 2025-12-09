@@ -1,3 +1,8 @@
+
+//************************ USING MAP(2 PASS) *****************************
+//************************ T.C = 0(2*N) **********************************
+//************************ S.C = 0(N) ************************************
+
 class Solution {
 public:
     const int MOD = 1e9+7;
@@ -27,5 +32,31 @@ public:
             left[mid]++;
         }
         return count % MOD;
+    }
+};
+
+
+//************************ USING MAP(1 PASS) *****************************
+//************************ T.C = 0(N) **********************************
+//************************ S.C = 0(N) ************************************
+
+class Solution {
+public:
+    int M = 1e9+7;
+    int specialTriplets(vector<int>& nums) {
+        unordered_map<int,int> valid_i, valid_j;
+
+        int result = 0;
+
+        for(int &num : nums) {
+            if(num % 2 == 0) {
+                result = (result + valid_j[num/2]) % M;
+            }
+
+            valid_j[num] = (valid_j[num] + valid_i[num*2]) % M;
+
+            valid_i[num]++;
+        }
+        return result;
     }
 };
