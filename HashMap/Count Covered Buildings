@@ -1,0 +1,44 @@
+//*********************** T.C = O(N) **********************
+
+class Solution {
+public:
+    int countCoveredBuildings(int n, vector<vector<int>>& buildings) {
+        unordered_map<int, int> minY, maxY;
+        unordered_map<int, int> minX, maxX;
+
+        for (auto &b : buildings) {
+            int x = b[0], y = b[1];
+
+            if (!minY.count(x)) {
+                minY[x] = maxY[x] = y;
+            } else {
+                minY[x] = min(minY[x], y);
+                maxY[x] = max(maxY[x], y);
+            }
+
+            if (!minX.count(y)) {
+                minX[y] = maxX[y] = x;
+            } else {
+                minX[y] = min(minX[y], x);
+                maxX[y] = max(maxX[y], x);
+            }
+        }
+
+        int covered = 0;
+
+        for (auto &b : buildings) {
+            int x = b[0], y = b[1];
+
+            bool hasLeft  = (minY[x] < y);
+            bool hasRight = (maxY[x] > y);
+            bool hasUp    = (minX[y] < x);
+            bool hasDown  = (maxX[y] > x);
+
+            if (hasLeft && hasRight && hasUp && hasDown)
+                covered++;
+        }
+
+        return covered;
+
+    }
+};
