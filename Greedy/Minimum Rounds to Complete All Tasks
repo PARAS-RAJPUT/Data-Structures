@@ -1,0 +1,32 @@
+
+//****************************** T.C = O(N) ************************
+
+class Solution {
+public:
+    int minimumRounds(vector<int>& tasks) {
+        sort(tasks.begin(), tasks.end());
+
+        unordered_map<int, int> freq;
+
+        for(int level : tasks) {
+            freq[level]++;
+        }
+
+        long long rounds = 0;
+
+        for(auto& level : freq){
+            int diff = level.second;
+
+            if(diff == 1) {
+                return -1;
+            }
+
+            rounds += diff/3;
+            if(diff % 3 != 0) {
+                rounds++;
+            }
+        }
+
+        return rounds;
+    }
+};
