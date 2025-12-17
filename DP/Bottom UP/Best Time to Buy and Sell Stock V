@@ -1,0 +1,42 @@
+class Solution {
+public:
+    long long maximumProfit(vector<int>& prices, int K) {
+        int n = prices.size();
+        
+        long long t[1001][501][3];
+
+        for(int k = 0; k <= K; k++) {
+            t[n][k][0] = 0;
+            t[n][k][1] = INT_MIN;
+            t[n][k][2] = INT_MIN;
+        }
+
+        for(int i = n-1; i>=0; i--) {
+            for(int k = 0; k <= K; k++) {
+
+                t[i][k][0] = t[i+1][k][0];
+
+                if(k > 0) {
+                    t[i][k][0] = max(
+                        t[i][k][0], max(-prices[i] + t[i+1][k][1], prices[i] + t[i+1][k][2]
+                        )
+                    );
+                }
+
+                t[i][k][1] = t[i+1][k][1];
+
+                if(k>0) {
+                    t[i][k][1] = max(t[i][k][1], prices[i] + t[i+1][k-1][0]);
+                }
+
+                t[i][k][2] = t[i+1][k][2];
+                if(k > 0) {
+                    t[i][k][2] = max(t[i][k][2], -prices[i] + t[i+1][k-1][0]);
+                }
+            }
+        }
+
+        return t[0][K][0];
+    }
+
+};
