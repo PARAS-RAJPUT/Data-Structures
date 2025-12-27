@@ -1,0 +1,41 @@
+class Solution {
+public:
+    int mostBooked(int n, vector<vector<int>>& meetings) {
+        sort(meetings.begin(), meetings.end());
+        
+        priority_queue<int, vector<int>, greater<int>> avail;      // free rooms (min room #)
+        for (int i = 0; i < n; ++i) avail.push(i);
+        
+        priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<>> busy; // {end, room}
+        
+        vector<int> cnt(n, 0);
+        
+        for (auto& m : meetings) {
+            long long start = m[0], dur = m[1] - m[0];
+            
+            while (!busy.empty() && busy.top().first <= start) {
+                avail.push(busy.top().second);
+                busy.pop();
+            }
+            
+            int room;
+            long long endTime;
+            if (!avail.empty()) {
+                room = avail.top(); avail.pop();
+                endTime = start + dur;
+            } else {
+                auto [t, r] = busy.top(); busy.pop();
+                room = r;
+                endTime = t + dur;
+            }
+            busy.push({endTime, room});
+            cnt[room]++;
+        }
+        
+        int best = 0;
+        for (int i = 1; i < n; ++i)
+            if (cnt[i] > cnt[best]) best = i;
+            
+        return best;
+    }
+};
