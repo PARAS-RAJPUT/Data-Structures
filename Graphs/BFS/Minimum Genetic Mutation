@@ -1,0 +1,46 @@
+class Solution {
+public:
+    int minMutation(string startGene, string endGene, vector<string>& bank) {
+        unordered_set<string> geneBank(bank.begin(), bank.end());
+
+        if(geneBank.find(endGene) == geneBank.end()) {
+            return -1;
+        }
+
+        char mutations[] = {'A', 'C', 'G', 'T'};
+        int mutationCount = 0;
+
+        queue<string> q;
+        q.push(startGene);
+
+        while(!q.empty()) {
+            int levelSize = q.size();
+
+            for(int i = 0; i<levelSize; i++) {
+                string gene = q.front();
+                q.pop();
+
+                if(gene == endGene) {
+                    return  mutationCount;
+                }
+
+                for(int index = 0; index < 8; index++) {
+                    char original = gene[index];
+
+                    for(char mutation : mutations) {
+                        gene[index] = mutation;
+
+                        if(geneBank.count(gene)) {
+                            q.push(gene);
+                            geneBank.erase(gene);
+                        }
+                    }
+                    gene[index] = original;
+                }
+            }
+            mutationCount++;
+        }
+        return -1
+        ;
+    }
+};
