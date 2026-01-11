@@ -1,0 +1,40 @@
+#include <bits/stdc++.h> 
+
+bool isCycleDFS(vector<vector<int>>&adj, int u, vector<int>&visited, vector<int>&isRecursion) {
+    visited[u] = 1;
+    isRecursion[u] = 1;
+
+    for(int &v : adj[u]) {
+        if(!visited[v] && isCycleDFS(adj, v, visited, isRecursion)) {
+            return true;
+        }
+        else if(isRecursion[v]) {
+            return true;
+        }
+    }
+    isRecursion[u] = 0;
+    return false;
+}
+string canFinish(vector<vector<int>>& prerequisites, int n, int m)
+{
+    // Write your code here
+    // Return "Yes" if possible
+    // Else return "No"
+    vector<vector<int>> adj(n);
+    vector<int> visited(n, 0);
+    vector<int> isRecursion(n, 0);
+
+    for(auto &vec : prerequisites) {
+        int a = vec[0] - 1;
+        int b = vec[1] - 1;
+        adj[b].push_back(a);
+    }
+
+    
+    for(int i = 0; i<n; i++) {
+        if(!visited[i] && isCycleDFS(adj, i, visited, isRecursion)) {
+            return "No";
+        }
+    }
+    return "Yes";
+}
