@@ -1,3 +1,11 @@
+
+
+//************************************ T.C = O(N + M) *********************************
+//******************************* FOR T CASES : T * O(N + M) **************************
+
+
+
+
 #include <bits/stdc++.h> 
 
 bool isCycleDFS(vector<vector<int>>&adj, int u, vector<int>&visited, vector<int>&isRecursion) {
