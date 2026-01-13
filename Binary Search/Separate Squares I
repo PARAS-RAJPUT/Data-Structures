@@ -1,0 +1,33 @@
+class Solution {
+public:
+    double separateSquares(vector<vector<int>>& squares) {
+        double low = 0.0, high = 1e10, ans = 1e9, epsilon = 1e-5;
+
+        auto check = [&](const double &mid) -> bool {
+            double areaBottom = 0, areaUp = 0;
+            for(const auto& square : squares) {
+                double y = square[1], l = square[2];
+                if(y<mid) {
+                    areaBottom += l * min(l, mid - y);
+                    areaUp += l * max(0.0, y + l - mid);
+                }
+                else{
+                    areaUp += l * l;
+                }
+            }
+            return areaBottom >= areaUp;
+        };
+
+        while(abs(high - low) > epsilon) {
+            double mid = low + (high - low) / 2;
+            if(check(mid)) {
+                ans = min(ans, mid);
+                high = mid;
+            }
+            else{
+                low = mid;
+            }
+        }
+        return ans;
+    }
+};
