@@ -1,0 +1,54 @@
+class Solution {
+public:
+
+    vector<vector<int>> adj;
+    vector<int> visited;
+    vector<int> topo;
+
+    void dfs(int u) {
+        visited[u] = 1;
+
+        for(int v : adj[u]) {
+            if(!visited[v]) {
+                dfs(v);
+            }
+        }
+        topo.push_back(u);
+    }
+
+    vector<int> loudAndRich(vector<vector<int>>& richer, vector<int>& quiet) {
+        
+
+        int n = quiet.size();
+
+        adj.resize(n);
+        visited.resize(n, 0);
+
+        for(int i = 0; i<richer.size(); i++) {
+            int u = richer[i][0];
+            int v = richer[i][1];
+            adj[u].push_back(v);
+        }
+
+        for(int i = 0; i<n; i++) {
+            if(!visited[i]) {
+                dfs(i);
+            }
+        }
+
+        reverse(topo.begin(), topo.end());
+
+        vector<int> ans(n);
+        for(int i = 0; i<n; i++) {
+            ans[i] = i;
+        }
+        for(int u : topo) {
+            for(int v : adj[u]) {
+                if(quiet[ans[u]] < quiet[ans[v]]) {
+                    ans[v] = ans[u];
+                }
+            }
+        }
+        return ans;
+    }
+};
