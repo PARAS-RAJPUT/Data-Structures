@@ -1,0 +1,64 @@
+bool dfs(int u, vector<vector<int>> &adj, vector<int> &visited, vector<int> &inRec, stack<int> &st) {
+
+    visited[u] = 1;
+    inRec[u] = 1;
+
+    for(int &v : adj[u]) {
+        if(!visited[v] && dfs(v, adj, visited, inRec, st)) {
+            return true;
+        }
+        else if(inRec[v]) {
+            return true;
+        }
+    }
+
+    inRec[u] = 0;
+    st.push(u);
+    return false;
+}
+
+
+string getAlienLanguage(vector<string> &words, int k)
+{
+    // Write your code here.
+    vector<vector<int>> adj(k);
+
+    for(int i = 0; i<words.size() - 1; i++) {
+        string &w1 = words[i];
+        string &w2 = words[i+1];
+
+        int len = min(w1.size(), w2.size());
+
+        bool mismatchFound = false;
+
+        for (int j = 0; j < len; j++) {
+            if (w1[j] != w2[j]) {
+                adj[w1[j] - 'a'].push_back(w2[j] - 'a');
+                mismatchFound = true;
+                break;
+            }
+        }
+
+        if (!mismatchFound && w1.size() > w2.size()) {
+            return "";
+        }
+    }
+    vector<int> visited(k, 0), inRec(k, 0);
+    stack<int> st;
+
+    for(int i = 0; i<k; i++) {
+        if(!visited[i]) {
+            if(dfs(i, adj, visited, inRec, st)) {
+                return "";
+            }
+         }
+    }
+
+    string ans = "";
+    while(!st.empty()) {
+        ans += char(st.top() + 'a');
+        st.pop();
+    }
+
+    return ans;
+}
