@@ -1,0 +1,27 @@
+class Solution {
+public:
+    
+    int minPair(vector<int>v) {  // min pair in one linear scan
+        int minSum = 1e9;
+        int pos = -1;
+        for(int i = 0; i<(int)v.size() - 1; i++) {
+            if(v[i] + v[i+1] < minSum) {
+                minSum = v[i] + v[i+1];
+                pos = i;
+            }
+        }
+        return pos;
+    }
+    void mergePair(vector<int> &v, int pos) {  // adding the pair 
+        v[pos] += v[pos+1];
+        v.erase(v.begin()+pos+1);
+    }
+    int minimumPairRemoval(vector<int>& nums) {
+        int operation = 0;
+        while(!is_sorted(nums.begin(), nums.end())) {   // builtin sorted function
+            mergePair(nums, minPair(nums));
+            operation+=1;
+        }
+        return operation;
+    }
+};
