@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int minSwapsCouples(vector<int>& row) {
+        int swaps = 0;
+        int n = row.size();
+
+        vector<int> position(n);
+
+        for(int i = 0; i<n; i++) {
+            position[row[i]] = i;
+        }
+
+        for(int i = 0; i<n; i+=2) {
+            int first = row[i];
+            int second = row[i+1];
+            int expectedSecond = first ^ 1;
+
+            if(second != expectedSecond) {
+                swaps++;
+
+                int partnerIndex = position[expectedSecond];
+
+                swap(row[i+1], row[partnerIndex]);
+
+                position[second] = partnerIndex;
+                position[expectedSecond] = i+1;
+            }
+        }
+        return swaps;
+        
+    }
+};
