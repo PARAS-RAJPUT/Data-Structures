@@ -1,0 +1,96 @@
+class Solution {
+public:
+    using ll = long long;
+    int minimumPairRemoval(vector<int>& nums) {
+        int n = nums.size();
+
+        vector<ll> a(n);
+
+        for(int i = 0; i<n; i++) {
+            a[i] = nums[i];
+
+        }
+        set<pair<ll, int>> s; // {sum, index}
+        vector<int> nxt(n);
+        vector<int> pre(n);
+
+        for(int i = 0; i<n; i++) {
+            nxt[i] = i+1;
+        }
+        for(int i = 0; i<n; i++) {
+            pre[i] = i-1;
+        }
+
+        int count = 0;
+
+        for(int i = 0; i<n-1; i++) {
+            if(a[i] > a[i+1]) {
+                count++;
+            }
+            s.insert({a[i] + a[i+1], i});
+        }
+
+        int ans = 0;
+        while(!s.empty() && count > 0) {
+            auto it = s.begin();
+        int i = it->second;
+
+        if (i < 0 || i >= n || nxt[i] >= n) {
+            s.erase(it);
+            continue;
+        }
+
+        int j = nxt[i];
+
+        if (pre[j] != i) {
+            s.erase(it);
+            continue;
+        }
+
+        int p = pre[i];
+        int q = nxt[j];
+
+        if (a[i] > a[j]) count--;
+
+        // left boundary
+        if (p >= 0) {
+            bool oldBad = (a[p] > a[i]);
+            bool newBad = (a[p] > (a[i] + a[j]));
+
+            if (oldBad && !newBad) count--;
+            else if (!oldBad && newBad) count++;
+        }
+
+        // right boundary
+        if (q < n) {
+            bool oldBad = (a[j] > a[q]);
+            bool newBad = ((a[i] + a[j]) > a[q]);
+
+            if (oldBad && !newBad) count--;
+            else if (!oldBad && newBad) count++;
+        }
+
+        s.erase(it);
+        
+        if (p >= 0) {
+            auto it2 = s.find({a[p] + a[i], p});
+            if (it2 != s.end()) s.erase(it2);
+        }
+        if (q < n) {
+            auto it3 = s.find({a[j] + a[q], j});
+            if (it3 != s.end()) s.erase(it3);
+        }
+
+        a[i] = a[i] + a[j];
+        nxt[i] = q;
+        if (q < n) pre[q] = i;
+        if (p >= 0) s.insert({a[p] + a[i], p});
+        if (q < n) s.insert({a[i] + a[q], i});
+
+        ans++;
+        }
+
+        return ans;
+
+    }
+};
