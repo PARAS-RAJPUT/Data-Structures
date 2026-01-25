@@ -1,0 +1,44 @@
+class Solution {
+public:
+    void dfs(vector<string>& curr, string firstEmail, unordered_map<string, int>& visited, unordered_map<string, vector<string>>& mp) {
+        visited[firstEmail] = 1;
+        curr.push_back(firstEmail);
+
+        for(auto it : mp[firstEmail]) {
+            if(!visited[it]) {
+                dfs(curr, it, visited, mp);
+            }
+        }
+    }
+    vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
+        unordered_map<string, int> visited;
+        unordered_map<string, vector<string>> mp;
+
+        int n = accounts.size();
+
+        for(auto &account : accounts) {
+            string firstEmail = account[1];
+            for(int j = 2; j<account.size(); j++) {
+                mp[firstEmail].push_back(account[j]);
+                mp[account[j]].push_back(firstEmail);
+            }
+        }
+
+        vector<vector<string>> ans;
+
+        for(auto &account : accounts) {
+            string name = account[0];
+            string firstEmail = account[1];
+
+            if(!visited[firstEmail]) {
+                vector<string> curr;
+                curr.push_back(name);
+                dfs(curr, firstEmail, visited, mp);
+
+                sort(curr.begin()+1, curr.end());
+                ans.push_back(curr);
+            }
+        }
+        return ans;
+    }
+};
