@@ -1,0 +1,35 @@
+class Solution {
+public:
+
+    void dfs(unordered_map<int, vector<int>> &adj, int u, int parent, int dist, unordered_map<int, int> &d) {
+        d[u] = dist;
+        for(auto v : adj[u]) {
+            if(v != parent) {
+                dfs(adj, v, u, dist+1, d);
+            }
+        }
+    }
+    int specialNodes(int n, vector<vector<int>>& edges, int x, int y, int z) {
+        unordered_map<int, int> dx, dy, dz;
+        unordered_map<int, vector<int>> adj;
+
+        for(auto vec : edges) {
+            adj[vec[0]].push_back(vec[1]);
+            adj[vec[1]].push_back(vec[0]);
+        }
+
+        dfs(adj, x, -1, 0, dx);
+        dfs(adj, y, -1, 0, dy);
+        dfs(adj, z, -1, 0, dz);
+
+        int ans = 0;
+        for(int i = 0; i<n; i++) {
+            vector<int> v = {dx[i], dy[i], dz[i]};
+            sort(v.begin(), v.end());
+            if(1LL * v[0] * v[0] + 1LL * v[1] * v[1] == 1LL * v[2] * v[2]) {
+                ans++;
+            }
+        }
+        return ans;
+    }
+};
