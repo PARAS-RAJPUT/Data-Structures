@@ -1,6 +1,10 @@
 # Graph – Data Structure 📊
 
 
+![kermie-lost-kermit](https://github.com/user-attachments/assets/bb63637f-5c00-48d3-b891-5349f86eba20)
+
+
+
 
 📌 Introduction
 
