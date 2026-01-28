@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	
+	while(t--) {
+	    int x, y, z;
+	    cin>>x>>y>>z;
+	    
+	    int pairs123 = min(x, z);
+	    int pairs12 = y/2;
+	    
+	    cout<<pairs123+pairs12<<endl;
+	}
+
+}
