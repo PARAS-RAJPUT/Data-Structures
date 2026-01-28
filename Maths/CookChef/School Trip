@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	
+	while(t--) {
+	    int n, x, k;
+	    cin>>n>>x>>k;
+	    
+	    int lower = (x/k) * k;
+	    int ans = abs(x - lower);
+	    
+	    int upper = lower+k;
+	    if(upper <= n) {
+	        ans = min(ans, abs(upper-x));
+	    }
+	    cout<<ans<<endl;
+	}
+
+}
