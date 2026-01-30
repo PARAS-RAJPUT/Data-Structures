@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+        const int n = nums.size();
+
+        sort(nums.begin(), nums.end());
+
+        nums.erase(unique(nums.begin(), nums.end()), nums.end());
+
+        const int m = nums.size();
+
+        int jumps = 0;
+
+        for(int i = 0; i<m; i++) {
+            if(nums[i] - nums[jumps] >= n) {
+                jumps++;
+            }
+        }
+        return n - m + jumps;
+    }
+};
