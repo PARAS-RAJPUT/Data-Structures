@@ -1,0 +1,52 @@
+using ll = long long;
+class Solution {
+public:
+    ll minimumCost(vector<int>& nums, int k, int dist) {
+        int n = nums.size();
+
+        ll sum = 0;;
+        ll best = LLONG_MAX;
+
+        multiset<int, greater<int>> top, cot;
+
+        for(int r = 1; r<n; r++) {
+            int l = r - dist - 1;
+            if(l >= 1) {
+                if(top.contains(nums[l])) {
+                    sum -= nums[l];
+                    top.erase(top.find(nums[l]));
+                }
+                if(cot.contains(nums[l]))
+                    cot.erase(cot.find(nums[l]));
+            }
+            sum += nums[r];
+            top.insert(nums[r]);
+
+            if(top.size() > (k-1)) {
+                sum -= *top.begin();
+
+                cot.insert(*top.begin());
+                top.erase(top.begin());
+            }
+
+            while(top.size() && cot.size() && (*top.begin() > *prev(cot.end()))) {
+                sum -= *top.begin();
+                sum += *prev(cot.end()); 
+
+                cot.insert(*top.begin());
+                top.erase(top.begin());
+
+                top.insert(*prev(cot.end()));
+                cot.erase(prev(cot.end()));                
+            } 
+
+            
+
+
+            if(top.size() == (k-1)) {
+                best = min(best, sum);
+            }
+        }
+        return nums[0] + best;
+    }
+};
