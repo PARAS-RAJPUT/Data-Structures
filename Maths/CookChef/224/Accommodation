@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main() {
+	// your code goes here
+    int t;
+    cin>>t;
+    
+    while(t--) {
+        ll B, G, X, Y, N;
+        cin>>B>>G>>X>>Y>>N;
+        
+        if(X+Y > N) {
+            cout<<-1<<"\n";
+            continue;
+        }
+        
+        ll R = (B + G + N - 1) / N;
+        
+        if(B < R * X || G < R * Y) {
+            cout<< -1 << "\n";
+        }
+        else{
+            cout << R << "\n";
+        }
+        
+    }
+}
