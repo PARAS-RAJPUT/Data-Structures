@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string largestWordCount(vector<string>& messages, vector<string>& senders) {
+        map<string, int> mp;
+
+        int max1= 0;
+
+        for(int i = 0; i<senders.size(); i++) {
+            int req = 1;
+
+            for(char c : messages[i]) {
+                if(c == ' ') {
+                    req++;
+                }
+            }
+            mp[senders[i]] += req;
+
+            max1 = max(max1, mp[senders[i]]);
+        }
+
+        vector<string> s;
+
+        for(auto &it : mp) {
+            if(it.second == max1) {
+                s.push_back(it.first);
+            }
+        }
+        return s.back();
+    }
+};
