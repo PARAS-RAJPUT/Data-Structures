@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int minimumDeletions(string s) {
+        // aababbab -> ababbab -> babbab
+
+        int res = 0;
+        int b_count = 0;
+
+        for(char &c : s) {
+            if(c == 'b') {
+                b_count++;
+            }
+            else{
+                if(b_count > 0) {
+                    res++;
+                    b_count--;
+                }
+            }
+        }
+        return res;
+    }
+};
