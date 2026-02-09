@@ -1,0 +1,12 @@
+int findMaxProfit(vector<int>& prices) {
+    //write code here...
+    int minPrice = INT_MAX;
+    int maxProfit = 0;
+    
+    for(int price : prices) {
+        minPrice = min(minPrice, price);
+        maxProfit = max(maxProfit, price - minPrice);
+    }
+    
+    return maxProfit;
+}
