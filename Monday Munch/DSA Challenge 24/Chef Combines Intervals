@@ -1,0 +1,28 @@
+vector<vector<int>> mergeIntervals(vector<vector<int>>& intervalList) {
+    // write your code here 
+    if(intervalList.empty()) {
+        return {};
+    }
+    
+    sort(intervalList.begin(), intervalList.end());
+    
+    
+    vector<vector<int>> merged;
+    
+    merged.push_back(intervalList[0]);
+    
+    for(int i = 1; i < intervalList.size(); i++) {
+        int currStart = intervalList[i][0];
+        int currEnd = intervalList[i][1];
+        
+        if(currStart <= merged.back()[1]) {
+            merged.back()[1] = max(merged.back()[1], currEnd);
+        }
+        
+        else{
+            merged.push_back(intervalList[i]);
+        }
+    }
+    
+    return merged;
+ }
