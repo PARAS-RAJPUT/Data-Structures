@@ -1,0 +1,50 @@
+class Solution {
+public:
+    int minAbsDifference(vector<int>& nums, int goal) {
+        int n = nums.size();
+        int mid = n / 2;
+
+        vector<long long> left, right;
+        
+        for (int mask = 0; mask < (1 << mid); mask++) {
+            long long sum = 0;
+            for (int i = 0; i < mid; i++) {
+                if (mask & (1 << i)) {
+                    sum += nums[i];
+                }
+            }
+            left.push_back(sum);
+        }
+
+        for (int mask = 0; mask < (1 << (n - mid)); mask++) {
+            long long sum = 0;
+            for (int i = 0; i < n - mid; i++) {
+                if (mask & (1 << i)) {
+                    sum += nums[mid + i];
+                }
+            }
+            right.push_back(sum);
+        }
+
+        sort(right.begin(), right.end());
+
+        long long ans = LLONG_MAX;
+
+        for (long long x : left) {
+            long long target = goal - x;
+
+            int idx = lower_bound(right.begin(), right.end(), target) - right.begin();
+
+            if (idx < right.size()) {
+                ans = min(ans, llabs(target - right[idx]));
+            }
+            if (idx > 0) {
+                ans = min(ans, llabs(target - right[idx - 1]));
+            }
+
+            if (ans == 0) return 0;
+        }
+
+        return (int)ans;
+    }
+};
