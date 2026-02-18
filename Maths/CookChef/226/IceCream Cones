@@ -1,1 +1,24 @@
 
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	
+	while(t--) {
+	    int x,y,n;
+	    cin>>x>>y>>n;
+	    
+	    int k = x - y*n;
+	    
+	    if(k>0) {
+	        cout<<k<<endl;
+	    }
+	    else{
+	        cout<<0<<endl;
+	    }
+	}
+
+}
