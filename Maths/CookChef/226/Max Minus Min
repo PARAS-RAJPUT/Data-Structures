@@ -1,1 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N;
+        cin >> N;
+
+        vector<int> A(N);
+        for (int i = 0; i < N; i++) cin >> A[i];
+
+        vector<pair<int,int>> values;
+
+        for (int i = 0; i < N; i++) {
+            long long x = A[i];
+            while (x <= 200000) {
+                values.push_back({x, i});
+                x *= 2;
+            }
+        }
+
+        sort(values.begin(), values.end());
+
+        vector<int> freq(N, 0);
+        int covered = 0;
+        int left = 0;
+        int ans = INT_MAX;
+
+        for (int right = 0; right < (int)values.size(); right++) {
+            if (freq[values[right].second]++ == 0)
+                covered++;
+
+            while (covered == N) {
+                ans = min(ans,
+                          values[right].first - values[left].first);
+
+                if (--freq[values[left].second] == 0)
+                    covered--;
+
+                left++;
+            }
+        }
+
+        cout << ans << "\n";
+    }
+}
 
