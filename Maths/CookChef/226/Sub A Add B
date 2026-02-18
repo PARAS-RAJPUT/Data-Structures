@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	
+	int t;
+	cin>>t;
+	while(t--) {
+	    int n,a,b;
+	    
+	    cin>>n>>a>>b;
+	    
+	    if(n < a) {
+	        cout<<n<<"\n";
+	    }
+	    else{
+	        int sub = a - b;
+	        
+	        int k = (n - a) / sub + 1;
+	        
+	        int final = n - k * sub;
+	        
+	        cout<<final<<endl;
+	    }
+	}
+
+}
