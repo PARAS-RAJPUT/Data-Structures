@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int minBitFlips(int start, int goal) {
+        
+        int XOR_res = start ^ goal;
+
+        int minCount = 0;
+
+        while(XOR_res > 0) {
+            minCount += XOR_res & 1;
+            XOR_res >>= 1;
+        }
+
+        return minCount;
+    }
+};
