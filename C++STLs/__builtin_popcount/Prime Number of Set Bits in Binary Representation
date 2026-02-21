@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int countPrimeSetBits(int left, int right) {
+
+        auto isPrime = [](int x) {
+            if(x < 2) {
+                return false;
+            }
+            for(int i = 2; i * i <= x; i++) {
+                if(x % i == 0) {
+                    return false;
+                }
+            }
+            return true;
+        };
+
+
+        int sum = 0;
+
+        for(int i = left; i<=right; i++) {
+            int ones = __builtin_popcount(i);
+
+            if(isPrime(ones)) {
+                sum++;
+            }
+        }
+        return sum;
+    }
+};
