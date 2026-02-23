@@ -1,0 +1,48 @@
+class Solution {
+public:
+
+    void dfs(int r, int c, vector<vector<int>> &landSeaGrid, int rows, int cols) {
+        if(r < 0 || c < 0 || r >= rows || c >= cols || landSeaGrid[r][c] == 0) {
+            return;
+        }
+        
+        landSeaGrid[r][c] = 0;
+        
+        dfs(r+1, c, landSeaGrid, rows, cols);
+        dfs(r-1, c, landSeaGrid, rows, cols);
+        dfs(r, c+1, landSeaGrid, rows, cols);
+        dfs(r, c-1, landSeaGrid, rows, cols);
+        
+        
+    }
+    int countEnclavedLandCells( vector<vector<int>>& landSeaGrid, int gridRowCount, vector<int>& gridColumnSizes
+    ) {
+        // write your code here 
+        
+        int rows = gridRowCount;
+        int cols = gridColumnSizes[0];
+        
+        
+        for(int r = 0; r<rows; r++) {
+            dfs(r, 0 , landSeaGrid, rows, cols);
+            dfs(r, cols-1, landSeaGrid, rows, cols);
+        }
+        
+        for(int c = 0; c<cols; c++) {
+            dfs(0, c, landSeaGrid, rows, cols);
+            dfs(rows-1, c, landSeaGrid, rows, cols);
+        }
+        
+        int enclaves = 0;
+        
+        for(int r = 0; r<rows; r++) {
+            for(int c = 0; c<cols; c++) {
+                if(landSeaGrid[r][c] == 1) {
+                    enclaves++;
+                }
+            }
+        }
+        
+        return enclaves;
+    }
+};
