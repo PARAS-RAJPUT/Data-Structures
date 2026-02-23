@@ -1,0 +1,21 @@
+int maxProductSubarray(vector<int>& arr) {
+    //write code here...
+    int n = arr.size();
+    
+    int maxEnding = arr[0];
+    int minEnding = arr[0];
+    int ans = arr[0];
+    
+    
+    for(int i = 1; i<n; i++) {
+        if(arr[i] < 0) {
+            swap(maxEnding, minEnding);
+        }
+        
+        maxEnding = max(arr[i], arr[i] * maxEnding);
+        minEnding = min(arr[i], arr[i] * minEnding);
+        
+        ans = max(ans, maxEnding);
+    }
+    return ans;
+}
