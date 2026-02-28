@@ -1,0 +1,24 @@
+
+#define MOD 1000000007
+
+class Solution {
+public:
+    int concatenatedBinary(int n) {
+        long long result = 0;
+
+        for(int i = 1; i<=n; i++) {
+
+            int bit_length = 0;
+            int temp = i;
+
+            while(temp > 0) {
+                temp >>= 1;
+                bit_length++;
+            }
+
+            result = ((result << bit_length) % MOD + i) % MOD;
+        }
+
+        return (int)result;
+    }
+};
