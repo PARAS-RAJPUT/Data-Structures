@@ -1,6 +1,5 @@
 # STLs
 
-In case of time complexity, provides O(1) in most cases(not every).
 -> Fast -> Easy
 
 
