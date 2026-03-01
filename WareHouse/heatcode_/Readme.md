@@ -1,6 +1,4 @@
-# LeetCode Daily Problem Of The Day
-
-## BUILDING LOGIC
+# Daily Problem Of The Day
 
 
 -> Data Structures & Algorithms
