@@ -1,0 +1,36 @@
+class Solution {
+public:
+    void dfs(vector<vector<int>>& board, int r, int c, long long& sum) {
+        int m = board.size();
+        int n = board[0].size();
+        if(r < 0 || c < 0 || r >= m || c >= n || board[r][c] == 0) {
+            return;
+        }
+
+        sum += board[r][c];
+        board[r][c] = 0;
+
+        dfs(board, r, c+1, sum);
+        dfs(board, r, c-1, sum);
+        dfs(board, r+1, c, sum);
+        dfs(board, r-1, c, sum);
+
+
+    }
+    int countIslands(vector<vector<int>>& grid, int k) {
+        int islands=0;
+        int m=grid.size() , n=grid[0].size();
+        for(int i=0;i<m;i++) {
+            for(int j=0;j<n;j++) {
+                if(grid[i][j] > 0) {
+                    long long sum = 0;
+                    dfs(grid, i, j, sum);
+                    if(sum % k == 0) {
+                        islands++;
+                    }
+                }
+            }
+        }
+        return islands;
+    }
+};
