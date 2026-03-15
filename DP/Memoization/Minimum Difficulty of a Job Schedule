@@ -1,0 +1,62 @@
+class Solution {
+public:
+    int t[301][11];
+    int solve(vector<int> &jobDifficulty, int i, int d) {
+        int n = jobDifficulty.size();
+
+        if(d == 1) {
+            int mx = 0;
+            for(int j = i; j < n; j++) {
+                mx = max(mx, jobDifficulty[j]);
+            }
+            return mx;
+        }
+
+        if(t[i][d] != -1) {
+            return t[i][d];
+        }
+
+        int mx = 0;
+
+        int ans = INT_MAX;
+
+        for(int k = i; k <= n - d; k++) {
+            mx = max(mx, jobDifficulty[k]);
+            ans = min(ans, mx + solve(jobDifficulty, k + 1, d - 1));
+        }
+
+        return t[i][d] = ans;
+    
+    }
+    int minDifficulty(vector<int>& jobDifficulty, int d) {
+
+        int n = jobDifficulty.size();
+
+        memset(t, -1, sizeof(t));
+        if(n < d) {
+            return -1;
+        }
+
+        return solve(jobDifficulty, 0, d);
+    }
+};
+
+/*
+
+
+jobDifficulty = [6,5,4,3,2,1], d = 2
+
+      6  5  4  3  2  1
+             /\
+           6  +  1 = 7
+
+        9  9  9
+          /|\\
+         0
+
+    1 1 1
+     /|\
+    1 + 1 + 1 = 3  
+    
+
+*/
