@@ -1,0 +1,29 @@
+class Solution {
+public:
+    unordered_map<string,int> memo;
+
+    bool isUnique(string s) {
+        unordered_set<char> st(s.begin(), s.end());
+
+        return st.size() == s.size();
+    }
+
+    int solve(vector<string>& arr, int i, string j) {
+        if(!isUnique(j)) {
+            return 0;
+        }
+        string key = to_string(i) + " " + j;
+        if(memo.count(key)) return memo[key];
+
+        int ans = j.size();
+
+        for(int k = i; k < arr.size(); k++) {
+            ans = max(ans, solve(arr, k+1, j + arr[k]));
+        }
+
+        return memo[key] = ans;
+    }
+    int maxLength(vector<string>& arr) {
+        return solve(arr, 0, "");
+    }
+};
